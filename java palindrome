@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class PalindromeConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine();
+
+        if (isPalindrome(sentence)) {
+            System.out.println("The sentence is already a palindrome.");
+        } else {
+            String palindrome = convertToPalindrome(sentence);
+            System.out.println("Converted Palindrome: " + palindrome);
+        }
+    }
+
+    // Check if a string is a palindrome
+    public static boolean isPalindrome(String str) {
+        str = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    // Convert a sentence into a palindrome
+    public static String convertToPalindrome(String sentence) {
+        String reverse = new StringBuilder(sentence).reverse().toString();
+        return sentence + reverse;
+    }
+}
